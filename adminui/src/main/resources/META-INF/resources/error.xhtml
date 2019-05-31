@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" >
+
+<f:loadBundle basename="messages" var="msg" />
+<h:head>
+	<title><h:outputText value="Management Colsole" /></title>
+	<h:outputStylesheet name="/css/base.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/images/favicon.jpg"/>
+</h:head>
+
+<h:body>
+	<p:layout fullPage="true" >
+	<p:layoutUnit position="north"  resizable="false" closable="false" collapsible="false" gutter="0" style="border:0px">
+    	<h:panelGrid columns="2" width="100%" cellpadding="0" cellspacing="0" border="0" columnClasses="ten-percent middle-alignment, ninety-percent middle-alignment">
+    		<h:graphicImage url="/images/brand.png" width="131" height="55" styleClass="brandStyle"/>
+    		<p:panel styleClass="headerPanel" style="border:-moz-border-radius: 0px; -webkit-border-radius: 0px;">
+	        	<h:outputText styleClass="headerText" value="#{msg.indexPageHeaderPanelTitle}" />
+	        	<table style="width:100%;" cellpadding="1px" cellspacing="0px" border="0px">
+							<tr>
+								<td valign="middle" align="left" width="70%">
+									&nbsp;
+								</td>
+								<td valign="middle" align="right" width="11%" >
+									&nbsp;
+								</td>
+								<td valign="middle" align="center" width="1%" style="color:white;font-size:12px;">&nbsp;</td>
+								<td valign="middle" align="left" width="4%" >
+									&nbsp;
+								</td>
+							</tr>
+						</table>
+	        </p:panel>
+    	</h:panelGrid>
+    </p:layoutUnit>
+    
+    <p:layoutUnit position="center" gutter="0" styleClass="bodyPanel">
+		<h:form prependId="false" id="loginForm" >
+			<p:growl id="growl" showDetail="true" showSummary="true" sticky="true"/>
+			
+			<h:panelGrid columns="2"  styleClass="ui-fluid center ui-border top-alignment" style="margin-top:15%;border:1px">
+				<h:graphicImage url="/images/spring-logo_1.png" alt="home" width="200" height="140" styleClass="loginImageStyle"/>
+				<p:panel styleClass="errorPanel" id="errorPanel" style="background:#f3f4f8 !important;">
+					<h:panelGrid columns="1" styleClass="ui-fluid center top-alignment">
+						<h:graphicImage url="/images/error.png" alt="error" width="70" height="70" styleClass="loginImageStyle" style="margin-left: 35%;"/>
+						<h:outputText value="#{msg.errorMessage}" styleClass="errorMsg"/>
+						<h:outputText value="#{msg.errorSubMessage}" styleClass="errorMsg1" />
+					</h:panelGrid>
+				</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="south" resizable="false" closable="false" collapsible="false" gutter="0" style="border:0px">
+        <p:outputPanel styleClass="footerPanel" >
+				<h:outputText styleClass="footerText" value="© ETune Solutions 2019" />
+			</p:outputPanel>
+    </p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "application.external.image.location",
+    "type": "java.lang.String",
+    "description": "A description for 'application.external.image.location'"
+  },
+  {
+    "name": "appliction.user.default.password",
+    "type": "java.lang.String",
+    "description": "A description for 'appliction.user.default.password'"
+  },
+  {
+    "name": "application.external.image.location",
+    "type": "java.lang.String",
+    "description": "A description for 'application.external.image.location'"
+  }
+]}

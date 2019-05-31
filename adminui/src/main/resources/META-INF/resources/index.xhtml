@@ -1,0 +1,94 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" 
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+<f:loadBundle basename="messages" var="msg" />
+<f:view locale="#{index.locale}" encoding="utf-8">
+
+	<h:head>
+		<title><h:outputText value="#{msg.welcomeTitle}" /></title>
+		<h:outputStylesheet name="/css/base.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/images/favicon.jpg"/>
+	</h:head>
+	<h:body>
+		<p:layout fullPage="true" >
+	    <p:layoutUnit position="north"  resizable="false" closable="false" collapsible="false" gutter="0"  style="border-radius:0px !important; border:0px !important;" >
+	    	<p:panel styleClass="headerPanel" style="border:-moz-border-radius: 0px; -webkit-border-radius: 0px;">
+		        <h:outputText styleClass="headerText" value="#{msg.indexPageHeaderPanelTitle}" />
+		     </p:panel>
+	    </p:layoutUnit>
+		
+	    <p:layoutUnit position="center"  gutter="0" style="border:0px">
+		    <h:form id="createUserF">
+		    	<p:messages id="msg" showDetail="true" showSummary="false" closable="true" autoUpdate="true" styel="font-size:12px !important;"/>
+		    	<p:panel style="border:-moz-border-radius: 0px; -webkit-border-radius: 0px;">
+		    		<h:panelGrid columns="2" cellpadding="5">
+		    			<p:outputLabel id="msisdnL" value="#{msg.msisdn}" for="msisdn" styleClass="labelStyleWithPadding" style="padding-left:5px;padding-right:5px"/>
+		                <p:inputText id="msisdn" value="#{index.msisdn}" required="true" styleClass="inputTextStyle"  requiredMessage="MSISDN can not be left blank"/>
+		    		</h:panelGrid>
+		    		 <h:panelGrid columns="2" cellpadding="5">
+				     	<p:commandButton id="search" value="Search" icon="fa fa-plus"  actionListener="#{index.searchMsisdn}" update="responsePanelgrid"/>
+				     	<p:commandButton id="reset" value="Reset" icon="fa fa-close"  update="msisdn" actionListener="#{index.reset}"/>
+				     </h:panelGrid>
+				     <h:panelGrid columns="2" id="responsePanelgrid">
+				     	<p:dataTable id="sprData" 
+									value="#{index.responseEntity}" 
+									var="e"
+									style="margin-bottom: 10px;" 
+									paginator="true"
+									paginatorPosition="bottom" 
+									rows="6"
+									paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+									paginatorAlwaysVisible="false"
+									rendered="#{not empty index.responseEntity}">
+									<f:facet name="header">SPR Profile Details</f:facet>
+									<p:column headerText="MSISDN" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.msisdn}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Co Id" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.coId}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Co Status" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.coStatus}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Cs Id" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.customerId}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Bill Cycle" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.billCycle}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Id Value" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.idValue}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="RP Type" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.rateplantype}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Pymt Resp." styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.paymentResp}" style="font-weight:normal;"/>
+									</p:column>
+									<p:column headerText="Brring Status" styleClass="preformatted" style="font-weight:bold;">
+										<h:outputText value="#{e.barringStatus}" style="font-weight:normal;"/>
+									</p:column>
+								</p:dataTable>
+				     </h:panelGrid>
+			     </p:panel>
+		    </h:form>
+	    </p:layoutUnit>
+	    
+	    <p:layoutUnit position="south" resizable="false" closable="false" collapsible="false" gutter="0" style="border:0px;">
+	        <p:outputPanel styleClass="footerPanel" style="border:-moz-border-radius: 0px; -webkit-border-radius: 0px;">
+					<h:outputText styleClass="footerText" value="© Diyar United Company 2019" />
+				</p:outputPanel>
+	    </p:layoutUnit>
+		</p:layout>
+	</h:body>
+</f:view>
+</html>
